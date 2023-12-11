@@ -96,7 +96,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: niubg.github.io
+    repo: niubg/niubg.github.io
     repo_id: R_kgDOK3orpw
     category: General
     category_id: DIC_kwDOK3orp84Cbpt4
