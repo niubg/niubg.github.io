@@ -23,7 +23,7 @@ title: niubg-🍪 # the main title
 tagline: Front End Engineer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  JavaScript, node, typescript, css, less, webpack, react,vue,vitecode, blog; python
+  code, paper, blog; python, pytorch, transformers
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ""
