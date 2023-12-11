@@ -11,7 +11,7 @@ math: true
 
 mermaid: true
 
-description: Transformers入门，Huggingface，AutoModel，torch.nn
+description: JavaScript算法题：二分查找、阶乘、数组合并排序
 ---
 
 
