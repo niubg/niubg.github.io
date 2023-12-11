@@ -8,7 +8,7 @@ description: 算法题：二分查找、阶乘、数组合并排序
 
 ## 二分查找
 
->二分查找是一种非常高效的查找算法，前提是数组必须是有序的。下面是一个用 JavaScript 手写的简单二分查找算法：
+>二分查找是一种非常高效的查找算法，前提是数组必须是有序的。下面是一个简单二分查找算法：
 
 ``` javascript
 function binarySearch(arr, target) {
