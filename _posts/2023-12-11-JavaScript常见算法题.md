@@ -1,13 +1,17 @@
 ---
 title: JavaScript常见算法题
 
-date: 2023-12-11 17:00:00 +0800
+date: 2023-06-04 17:00:00 +0800
 
-categories: [JavaScript] 
+categories: [Deep Learning, Transformers]
 
-tags: [JavaScript, 算法]
+tags: [deep learning, transformers]
 
-description: 算法题：二分查找、阶乘、数组合并排序
+math: true
+
+mermaid: true
+
+description: Transformers入门，Huggingface，AutoModel，torch.nn
 ---
 
 
