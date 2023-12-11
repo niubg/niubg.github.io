@@ -3,9 +3,9 @@ title: JavaScript常见算法题
 
 date: 2023-12-11 17:00:00 +0800
 
-categories: [Deep Learning, Transformers]
+categories: [JavaScript常见算法题]
 
-tags: [deep learning, transformers]
+tags: [javascript]
 
 math: true
 
