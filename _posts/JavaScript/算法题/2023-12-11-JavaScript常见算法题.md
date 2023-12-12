@@ -26,9 +26,13 @@ function binarySearch(arr, target) {
       right = mid - 1; // 目标在左半部分
     }
   }
-
   return -1; // 未找到目标元素
 }
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const target = 7;
+const result = binarySearch(arr, target);
+console.log(result); // Output: 6
 
 ```
 - 这个二分查找函数接受一个有序数组 arr 和目标元素 target 作为参数，返回目标元素在数组中的索引，如果未找到则返回 -1。
@@ -37,6 +41,7 @@ function binarySearch(arr, target) {
 - 空间复杂度：O(1)
 
 - 时间复杂度是 O(log n) 是因为每次比较都能将待搜索范围减半，直到找到目标元素或搜索范围为空。空间复杂度是 O(1) 是因为算法使用了固定数量的变量，不随输入规模的增大而增加。
+
 
 
 ## 阶乘
