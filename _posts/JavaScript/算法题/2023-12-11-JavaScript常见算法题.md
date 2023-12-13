@@ -128,3 +128,57 @@ console.log(result); // Output: 6
 这个函数通过比较两个数组的元素，逐一选择较小的元素添加到结果数组中，以此保持有序性。最后，将剩余的元素添加到结果数组中。这个过程的时间复杂度是O(m + n)，其中m和n分别是两个数组的长度。
 
 如果要合并多个有序数组，可以多次调用这个函数。这里需要注意的是，如果有多个数组，合并过程可能不是最优的，可以考虑使用优先队列（Heap）等数据结构来更高效地进行多个有序数组的合并。
+
+
+## 获取首个不重复的字符
+- 给出一个字符串如：`aabbcddefgg`,获取当前字符串首个不重复的字符。
+
+``` js
+  function firstUniqChar(str) {
+    let charCount = {};
+
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i]
+      if (charCount[char]) {
+        // 如果有重复的将重复出现在charCount里的字符删除
+        delete charCount[char]
+      } else {
+        charCount[char] = 1; // 当前赋值只是标记作用，可以为任何值
+      }
+    }
+
+    for (let key in charCount) {
+      return key
+    }
+  }
+
+
+// 使用示例：
+const str = 'aabbcddefgg';
+const result = firstUniqChar(str);
+console.log(result); // 输出 'c'
+
+```
+或使用数组方式优化
+```js
+  function firstUniqChar(str) {
+    let charArr = [];
+    
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i]
+      const arrIndex = charArr.indexOf(char)
+      if (arrIndex > -1) {
+        // delete charArr[arrIndex]
+        charArr.splice(arrIndex, 1)
+      } else {
+        charArr.push(char)
+      }
+    }
+
+    return charArr[0]
+  }
+
+const str = 'aabbcddefgg';
+const result = firstUniqChar(str);
+console.log(result); // 输出 'c'
+```
