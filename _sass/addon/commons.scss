@@ -1381,13 +1381,13 @@ $btn-mb: 0.5rem;
   footer {
     p {
       width: auto;
-      &:last-child {
-        &::before {
-          content: '-';
-          margin: 0 0.75rem;
-          opacity: 0.8;
-        }
-      }
+      // &:last-child {
+      //   &::before {
+      //     content: '-';
+      //     margin: 0 0.75rem;
+      //     opacity: 0.8;
+      //   }
+      // }
     }
   }
 
