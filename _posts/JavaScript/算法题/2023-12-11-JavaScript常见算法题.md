@@ -183,3 +183,47 @@ const str = 'aabbcddefgg';
 const result = firstUniqChar(str);
 console.log(result); // 输出 'c'
 ```
+
+
+## 有效括号
+
+检查一个字符串中的括号是否有效（即左右括号匹配）：
+
+```javascript
+function isValidParentheses(s) {
+  const stack = [];
+  const parenthesesMap = {
+    '(': ')',
+    '[': ']',
+    '{': '}'
+  };
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+
+    if (parenthesesMap[char]) {
+      // 如果是左括号，将其推入栈中
+      stack.push(char);
+    } else {
+      // 如果是右括号，检查栈顶元素是否匹配
+      const top = stack.pop();
+      if (parenthesesMap[top] !== char) {
+        return false; // 括号不匹配
+      }
+    }
+  }
+
+  return stack.length === 0; // 栈为空表示括号全部匹配
+}
+
+// 示例
+console.log(isValidParentheses("()"));        // true
+console.log(isValidParentheses("()[]{}"));    // true
+console.log(isValidParentheses("(]"));        // false
+console.log(isValidParentheses("([)]"));      // false
+console.log(isValidParentheses("{[]}"));      // true
+```
+
+这个函数使用了栈（stack）的数据结构来跟踪左括号，遇到右括号时检查是否与栈顶的左括号匹配。如果匹配，将左括号出栈；如果不匹配，返回 `false`。最终，如果栈为空，说明所有括号都有匹配，返回 `true`；否则，返回 `false`。
+
+这个算法的时间复杂度是 O(n)，其中 n 是输入字符串的长度。
