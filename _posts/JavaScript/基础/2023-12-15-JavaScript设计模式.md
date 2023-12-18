@@ -86,6 +86,92 @@ console.log(instance1 === instance2); // 输出 true，说明两者是同一个�
 在上述例子中，`Singleton` 类的构造函数是私有的，通过 `getInstance` 方法获取实例，保证了全局只有一个实例存在。在实际应用中，单例模式可以用于管理全局状态、配置信息、数据库连接等需要唯一实例的场景。
 
 
+
+`上述代码单例代码很容易被篡改instance实例状态，所以可以使用es2022版私有变量‘#’`，代码如下
+
+```js
+class Singleton {
+  // 私有变量，用于保存唯一实例
+  static #instance = null;
+
+  // 私有构造函数，防止通过 new 操作符直接创建实例
+  constructor() {
+    if (!Singleton.#instance) {
+      Singleton.#instance = this;
+    }
+
+    return Singleton.#instance;
+  }
+
+  // 静态方法用于获取唯一实例
+  static getInstance() {
+    if (!Singleton.#instance) {
+      Singleton.#instance = new Singleton();
+    }
+
+    return Singleton.#instance;
+  }
+}
+
+// 使用单例模式创建实例
+const instance1 = new Singleton();
+const instance2 = Singleton.getInstance();
+
+console.log(instance1 === instance2); // 输出 true，说明两者是同一个实例
+
+```
+
+
+在这个修改版本中，`#instance`使用了私有字段（private field）的语法，它使得`instance`成为类的私有属性，外部无法直接访问。这样就增加了防篡改的难度。请注意，私有字段目前是JavaScript的ECMAScript标准的一部分，但在某些旧的环境中可能不被支持。
+
+如果你的环境不支持私有字段，另一种方法是使用闭包来隐藏`instance`：
+
+```js
+class Singleton {
+  // 私有变量，用于保存唯一实例
+  static #instance = null;
+
+  // 私有构造函数，防止通过 new 操作符直接创建实例
+  constructor() {
+    if (!Singleton.#instance) {
+      Singleton.#instance = this;
+    }
+
+    return Singleton.#instance;
+  }
+
+  // 静态方法用于获取唯一实例
+  static getInstance() {
+    if (!Singleton.#instance) {
+      Singleton.#instance = new Singleton();
+    }
+
+    return Singleton.#instance;
+  }
+}
+
+// 使用单例模式创建实例
+const createSingleton = (() => {
+  let instance = null;
+
+  return function () {
+    if (!instance) {
+      instance = new Singleton();
+    }
+
+    return instance;
+  };
+})();
+
+const instance1 = createSingleton();
+const instance2 = Singleton.getInstance();
+
+console.log(instance1 === instance2); // 输出 true，说明两者是同一个实例
+
+```
+
+
+
 ## 适配器模式
 
 适配器模式（Adapter Pattern）是一种结构设计模式，用于将一个接口转换成另一个客户端希望的接口。适配器模式允许原本由于接口不兼容而不能一起工作的类能够一起工作。
