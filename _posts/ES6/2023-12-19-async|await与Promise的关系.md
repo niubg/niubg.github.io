@@ -12,3 +12,16 @@ description: sync/await与Promise的关系ES6
 - await相当于Promise的then
 - try...catch可捕获异常，代替了Promise的catch
 
+```js
+ async function foo() {
+    return 10 // 相当于 return Promise.resolve(10)
+    // return Promise.resolve(10)
+ }
+
+ const res = foo() // 执行async函数，返回的是Promise对象
+ // 可以使用then获取数据结果
+ res.then(data => {
+    console.log(data) // 10
+ })
+```
+
