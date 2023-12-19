@@ -38,3 +38,18 @@ async function demo {
 demo()
 ```
 
+``` js
+async function demo() {
+    const p1 = Promise.reject('error异常')  // rejected 状态
+    try {
+        const res = await p1
+        console.log(res)
+    } catch (error) {
+        // try...catch 相当于 Promise catch
+        console.log(error)  // error异常
+    }
+}
+
+demo()
+
+```
