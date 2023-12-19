@@ -43,7 +43,7 @@ async function demo() {
     const p1 = Promise.reject('error异常')  // rejected 状态
     try {
         const res = await p1
-        // await 相当于 then，但上面执行的是 Promise.reject 所以下面的打印then返回结果是不会执行的，直接就走了catch 
+        // await 相当于 then，但上面执行的是 Promise.reject 所以下面的打印res(then)返回结果是不会执行的，直接就走了catch 
         console.log(res)
     } catch (error) {
         // try...catch 相当于 Promise catch
