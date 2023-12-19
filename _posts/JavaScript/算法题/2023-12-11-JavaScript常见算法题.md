@@ -227,3 +227,92 @@ console.log(isValidParentheses("{[]}"));      // true
 这个函数使用了栈（stack）的数据结构来跟踪左括号，遇到右括号时检查是否与栈顶的左括号匹配。如果匹配，将左括号出栈；如果不匹配，返回 `false`。最终，如果栈为空，说明所有括号都有匹配，返回 `true`；否则，返回 `false`。
 
 这个算法的时间复杂度是 O(n)，其中 n 是输入字符串的长度。
+
+
+
+## 链表式队列
+
+讲到队列我们就会想到栈，那么栈和队列的区别：
+- 栈 - 后进先出
+- 队列 - 先进先出
+
+通常我们要使用js实现一个队列的话，首先想到的就是数组形式，如：
+
+```js
+// 声明一个数组存放队列集合
+let queue = [];
+
+queue.unshfit(1) //  [1]
+queue.unshfit(2) // [2, 1]
+queue.unshfit(3) // [3, 2, 1]
+
+// 先进先出原则使用pop退出第一个进入的值
+queue.pop() // [3, 2]
+
+```
+如果考虑时间复杂度的话，上面的数组形式就不是最优选择，所以要使用链表形式。
+
+
+如下是链表形式：
+
+```js
+//  链表式队列
+class MyQueue {
+    constructor() {
+        this.length = 0 // 长度
+        this.head = null
+        this.tail = null
+    }
+
+    // 从tail入队
+    add(value) {
+        const newNode = {value}
+
+        if (this.length === 0) {
+            // 长度是0
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            // 长度 > 0,把 newNode 拼接到 tail 位置
+            this.tail.next = newNode
+            this.tail = newNode
+        }
+
+        this.length++ // 累加长度
+    }
+
+    // 从 head 出队
+    delet() {
+        if (this.length <= 0) return null
+        
+        let value = null
+
+        if (this.length === 1) {
+            // 长度是 1 ，只有一个元素了
+            value = this.head.value // 先找到结果
+            // 重置 head tail
+            this.head = null
+            this.tail = null            
+        } else {
+            // 长度 > 1, 多个元素
+            value = this.head.value // 先找到结果
+            this.head = this.head.next  // 重置 head
+        }
+
+        // 减少长度， 返回结果
+        this.length--
+        return value
+    }
+
+}
+
+// 功能测试
+const queue = new MyQueue()
+queue.add(100)
+queue.add(200)
+queue.add(300)
+
+queue.delet()   // 返回 100
+queue.delet()   // 返回 200
+queue.delet()   // 返回 300
+```
