@@ -25,3 +25,16 @@ description: sync/await与Promise的关系ES6
  })
 ```
 
+
+```js
+async function demo {
+    const p1 = Promise.resolve(100)
+    // await 相当于 Promise 里的 then，所以这里的data就等同于 then 方法中的响应参数data
+    const data = await p1
+    console.log(data)   // 100
+}
+
+// 执行
+demo()
+```
+
