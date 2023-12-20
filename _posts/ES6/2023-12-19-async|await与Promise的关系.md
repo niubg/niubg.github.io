@@ -54,3 +54,37 @@ async function demo() {
 demo()
 
 ```
+
+
+## 异步的本质
+
+- async/await是解决异步回调的终极武器
+- JS还是单线程，还有异步，还是基于 event loop
+- async/await 只是一个语法糖
+
+```js
+
+async function async1 () {
+    console.log(1)
+    await async2()
+    /**
+     * await 的后面执行的代码，都可以看作是 callback 里的内容，既异步
+     * 类似 event loop， setTimeout()
+     * setTimeout(function() { console.log(2) })
+     * Promise.resolve().then(() => { console.log(2) })
+     */
+    console.log(2)
+}
+
+async function async2() {
+    console.log(3)
+}
+
+console.log(4)
+async1()
+console.log(5)
+
+// 输出结果: 4 1 3 5 2
+
+
+```
