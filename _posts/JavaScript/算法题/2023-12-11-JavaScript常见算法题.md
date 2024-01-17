@@ -356,3 +356,5 @@ queue.delet()   // 返回 300
 当用户选择了某个SKU后，系统会根据邻接矩阵找出所有与该SKU可以同时选择的其他SKU，这些SKU在邻接矩阵中对应的值为11。这样，系统就可以实时更新可供用户选择的SKU，从而帮助用户正确选择衣服的尺码1。
 
 https://cloud.tencent.com/developer/article/1658305
+
+

@@ -51,3 +51,52 @@ function deepClone(obj = {}) {
     return result
 }
 ```
+
+## 节流
+节流经常在分页，按钮单击，表单提交等场景使用
+
+代码示例：
+```js
+function throttle(fn, delay) {
+    let timer = null;
+    return function() {
+        const _this = this
+        if (!timer) {
+            timer = setTimeout(() => {
+                fn.apply(_this, arguments)
+                clearTimeout(timer)
+                timer = null
+            })
+        }
+        
+    }
+}
+
+let a1 = throttle(()=>{console.log(1)}, 1000)
+a1()
+a1()
+a1()
+// 结果输出是有一次 1
+```
+
+## 防抖
+在特定的时间内重复触发只会在最后一次触发行为之后执行，使用场景：搜索输入、滚动监听，窗口大小拖拽等
+
+代码示例：
+```js
+function debounce(fn, delay) {
+    let timer = null
+    return function() {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(this, arguments)
+        }, delay)
+    }
+}
+
+const a1 = debounce(() => {console.log(1)}, 1000)
+a1()
+a1()
+a1()
+// 会在最后一次调用方法1秒后执行输出结果 1
+```
