@@ -99,3 +99,34 @@ boundGreet('!');  // 输出：Hello, Alice!
 ```
 
 在这个实现中，`myBind` 方法返回一个新函数。当新函数被调用时，它首先检查是否是通过 `new` 关键字调用的（即 `this instanceof originalFunction`）。如果是这样，它会将原始函数绑定到新的实例上，否则，它会将原始函数的 `this` 设置为传入的 `context`，并传入预先绑定的参数以及新的参数。
+
+
+
+## 手写实现一个 bind 方法 第二种
+
+```js
+Function.prototype.myApply = function(context, ...args) {
+	context = context || window
+	context.fn = this
+	const crrentVal = context.fn(...args)
+	delete context.fn
+	return context
+}
+
+Function.prototype.myBind = function(context, ...args) {
+	const instanceFun = this
+	
+	return function (...val) {
+		instanceFun.myApply(context, val.concat(args))
+	}
+}
+
+
+
+function getName(e) {
+	console.log(`我的名字叫：${this.name},自定义参数：${e}`)
+}
+
+const fun1 = getName.myBind({name: '张三'})
+fun1('传递') // 输出结果： 我的名字叫：张三,自定义参数：传递
+```
