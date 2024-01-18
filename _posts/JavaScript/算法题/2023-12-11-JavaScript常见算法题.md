@@ -358,3 +358,34 @@ queue.delet()   // 返回 300
 https://cloud.tencent.com/developer/article/1658305
 
 
+## 数组对象转树
+
+```js
+function arrayToTree(arr, parentId = null) {
+  const tree = [];
+
+  arr.forEach(item => {
+    if (item.parentId === parentId) {
+      const children = arrayToTree(arr, item.id);
+      if (children.length > 0) {
+        item.children = children;
+      }
+      tree.push(item);
+    }
+  });
+
+  return tree;
+}
+
+const data = [
+  { id: 1, name: 'Node 1', parentId: null },
+  { id: 2, name: 'Node 1.1', parentId: 1 },
+  { id: 3, name: 'Node 1.2', parentId: 1 },
+  { id: 4, name: 'Node 1.1.1', parentId: 2 },
+  { id: 5, name: 'Node 2', parentId: null },
+];
+
+const tree = arrayToTree(data);
+console.log(tree);
+```
+
