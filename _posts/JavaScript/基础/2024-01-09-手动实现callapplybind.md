@@ -107,6 +107,14 @@ boundGreet('!');  // 输出：Hello, Alice!
 ```js
 Function.prototype.myApply = function(context, ...args) {
 	context = context || window
+  // 下一步还要判断一下 context 类型，如果不是引用类型，要将其生成一个对象. 值类型转为对象
+  if (typeof context !== 'object') context == new Object(context)
+
+  /** 
+   * fn 属性可能会重复 考虑可以使用 Symbol() 方法生成唯一不重复的属性 如：
+   * const fnKey = Symbol()
+   * context[fnKey] = this
+   * */ 
 	context.fn = this
 	const crrentVal = context.fn(...args)
 	delete context.fn

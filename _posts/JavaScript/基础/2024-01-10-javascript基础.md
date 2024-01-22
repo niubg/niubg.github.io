@@ -100,3 +100,28 @@ a1()
 a1()
 // 会在最后一次调用方法1秒后执行输出结果 1
 ```
+
+## 创建一个 new 方法
+- `new` 一个对象发生了什么， 手写代码
+
+```js
+function customNew(constructor, ...args) {
+    // 创建一个空对象,继承 constructor 的原型
+    const obj = Object.create(constructor.prototype)
+    // 将 obj 作为 this， 执行 constructor， 传入参数
+    constructor.apply(obj, args)
+    return obj
+}
+```
+
+使用示例：
+```js
+function Foo(params) {
+    this.name = params
+}
+Foo.prototype.getName = function() {
+    console.log(this.name)
+}
+const f = customNew(Foo, '饼干')
+f.getName() // 饼干
+```
