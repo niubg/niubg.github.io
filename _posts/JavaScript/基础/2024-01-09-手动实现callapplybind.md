@@ -138,3 +138,59 @@ function getName(e) {
 const fun1 = getName.myBind({name: '张三'})
 fun1('传递') // 输出结果： 我的名字叫：张三,自定义参数：传递
 ```
+
+
+## 手写一个 LazyMan
+- 手写 LazyMan
+- 支持 sleep 和 eat 两个方法
+- 支持链式调用
+
+```js
+class LazyMan {
+	tasks = []
+	
+	constructor(name) {
+		this.name = name
+		
+		setTimeout(() => {
+			this.next()
+		})
+	}
+	
+	next() {
+		const task = this.tasks.shift() // 取出当前 tasks 的第一个任务
+		if (task) task()
+	}
+	
+	eat(food) {
+		const task = () => {
+			console.info(`${this.name} eat ${food}`)
+			this.next()
+		}
+		this.tasks.push(task)
+		return this
+	}
+	
+	sleep(seconds) {
+		const task = () => {
+			console.log('sleep')
+			setTimeout(() => {
+				this.next()
+			}, seconds*1000)
+		}
+		this.tasks.push(task)
+		return this
+	}
+	
+}
+
+const me = new LazyMan('饼干')
+me.eat('苹果').sleep(5).eat('橘子').eat('111')
+
+/** 输出结果：
+ * 饼干 eat 苹果
+ * sleep
+ * 饼干 eat 橘子
+ * 饼干 eat 111
+*/
+```
