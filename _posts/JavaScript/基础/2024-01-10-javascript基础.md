@@ -17,7 +17,6 @@ const obj = {
 }
 ```
 ![Alt text](/assets/img/javaScript/stack.jpg)
-![Alt text](/_posts/JavaScript//img/stack.jpg)
 
 
 ## 深拷贝
