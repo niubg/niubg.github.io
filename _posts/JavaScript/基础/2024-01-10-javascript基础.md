@@ -122,3 +122,8 @@ Foo.prototype.getName = function() {
 const f = customNew(Foo, '饼干')
 f.getName() // 饼干
 ```
+
+## 遍历数组 for 和 forEach 哪个更快
+- `for` 执行效率更高
+
+原因： `forEach` 每次都要创建一个函数来调用，而 `for` 不会创建函数。函数需要独立的作用域，会有额外的开销。
